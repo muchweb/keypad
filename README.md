@@ -1,4 +1,4 @@
-# Keypad
+# Keypad  [![Build Status](https://travis-ci.org/muchweb/keypad.svg)](https://travis-ci.org/muchweb/keypad) [![NPM version](https://badge.fury.io/js/logsack-core.svg)](http://badge.fury.io/js/logsack-core) ![License: GPLv3+](http://img.shields.io/badge/license-GPLv3%2B-brightgreen.svg)
 
 12-key keyboard layout emulation, similar to one that is used in mobile phones.
 
