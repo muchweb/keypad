@@ -96,9 +96,9 @@ exports.Keypad = class extends EventEmitter
 	constructor: (options = {}) ->
 		@[key] = val for key, val of options
 		throw new Error 'Custom maps cannot be selected in browser demo' if window? and @map_name isnt 'nokia'
-		{KeyMap} = require "./Map#{@map_name[0].toUpperCase()}#{@map_name.slice 1}.js" if window?
+		# {KeyMap} = require "./Map#{@map_name[0].toUpperCase()}#{@map_name.slice 1}.js" if window?
 		# Used for browserify demo generation
-		# {KeyMap} = require "./MapNokia.js"
+		{KeyMap} = require './MapNokia.js'
 		@mapping = KeyMap
 		@case = exports.Keypad.caselist[0]
 		@on 'push', (key) => @ProcessKey key

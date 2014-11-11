@@ -13,6 +13,7 @@
   },
   "scripts": {
     "prepublish": "make",
-    "test": "./node_modules/.bin/nodeunit test"
+    "pretest": "make",
+    "test": "make test"
   }
 }
