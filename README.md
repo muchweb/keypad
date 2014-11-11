@@ -2,6 +2,15 @@
 
 12-key keyboard layout emulation, similar to one that is used in mobile phones.
 
+Nokia mappings were manually typed to match (both are confirmed to use the same mapping):
+
+ - Nokia 5220
+ - Nokia X3-02
+
+Sony Ericsson mapping was typed in from this model:
+
+ - Sony Ericsson C902
+
 ## Usage
 
  - `delay`: Key press delay between letters are reset, *default*: `50`

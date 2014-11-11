@@ -2,6 +2,11 @@
 
 exports.Constructing =
 
+	'default map_name': (test) ->
+		item = new Keypad
+		test.strictEqual item.map_name, 'nokia'
+		test.done()
+
 	'default delay': (test) ->
 		item = new Keypad
 		test.strictEqual item.delay, 100

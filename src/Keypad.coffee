@@ -6,9 +6,16 @@
 'use strict'
 
 {EventEmitter} = require 'events'
-{MapNokia}     = require './MapNokia.js'
 
 exports.Keypad = class extends EventEmitter
+
+	###*
+		Name of selected map
+		@property map_name
+		@type String
+		@default 'nokia'
+	###
+	map_name: 'nokia'
 
 	###*
 		Full typed in text
@@ -88,7 +95,8 @@ exports.Keypad = class extends EventEmitter
 	###
 	constructor: (options = {}) ->
 		@[key] = val for key, val of options
-		@mapping = MapNokia
+		{KeyMap} = require "./Map#{@map_name[0].toUpperCase()}#{@map_name.slice 1}.js"
+		@mapping = KeyMap
 		@case = exports.Keypad.caselist[0]
 		@on 'push', (key) => @ProcessKey key
 
@@ -99,6 +107,9 @@ exports.Keypad = class extends EventEmitter
 	###
 	ProcessKey: (key) ->
 		throw new Error 'Please specify pressed key code' unless key?
+
+		return @Backspace() if key is 'c'
+
 		throw new Error "This key code was not found in mapping: '#{key}'" unless @mapping[key]?
 
 		current_index = @mapping[key].indexOf @character
@@ -116,10 +127,19 @@ exports.Keypad = class extends EventEmitter
 		@ResetTimeout()
 
 	###*
+		Remove last character
+		@method Backspace
+	###
+	Backspace: ->
+		@character = null
+		return null if @text.length is 0
+		@text = @text.slice 0, -1
+
+	###*
 		Looping through available cases
 		@method LoopCase
 	###
-	LoopCase: () ->
+	LoopCase: ->
 		@character = null
 		current_index = exports.Keypad.caselist.indexOf @case
 		return @case = exports.Keypad.caselist[current_index + 1] if exports.Keypad.caselist[current_index + 1]?
