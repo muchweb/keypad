@@ -61,12 +61,20 @@ exports.MapNokia =
 		'k'
 		'l'
 		'5'
+		'£'
 	]
 	'6': [
 		'm'
 		'n'
 		'o'
 		'6'
+		'ö'
+		'ø'
+		'ò'
+		'ó'
+		'ô'
+		'õ'
+		'ñ'
 	]
 	'7': [
 		'p'
@@ -74,12 +82,18 @@ exports.MapNokia =
 		'r'
 		's'
 		'7'
+		'ß'
+		'$'
 	]
 	'8': [
 		't'
 		'u'
 		'v'
 		'8'
+		'ù'
+		'ú'
+		'û'
+		'ü'
 	]
 	'9': [
 		'w'
@@ -87,6 +101,8 @@ exports.MapNokia =
 		'y'
 		'z'
 		'9'
+		'ý'
+		'þ'
 	]
 	# Used for special character selection
 	'*': [
