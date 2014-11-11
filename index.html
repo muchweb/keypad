@@ -1,0 +1,125 @@
+<html>
+	<head>
+		<title>Keypad</title>
+		<meta charset="UTF-8">
+		<style media="screen">
+			.screen {
+				background: rgba(0, 0, 0, 0.1);
+				margin: 0 auto;
+				width: 400px;
+				padding: 32px;
+				box-sizing: border-box;
+			}
+			.screen > .screen-inner {
+				height: 300px;
+				box-sizing: border-box;
+				padding: 32px;
+				background: rgba(255, 255, 255, 0.5);
+				font-size: 200%;
+				font-family: monospace;
+			}
+			.screen > .screen-inner > #screen-inner-text {
+				background: rgba(0, 0, 0, 0.1);
+			}
+			.screen > .screen-inner > #screen-inner-character {
+				background: rgba(0, 0, 0, 1);
+				color: rgba(255, 255, 255, 1);
+			}
+			.keypad {
+				background: rgba(0, 0, 0, 0.1);
+				display: block;
+				margin: 0 auto;
+				width: 400px;
+			}
+			.keypad > .keypad-row {
+				background: rgba(0, 0, 0, 0.1);
+				border-bottom: 1px solid black;
+				display: flex;
+			}
+			.keypad > .keypad-row > .keypad-row-key {
+				background: rgba(0, 0, 0, 0.1);
+				padding: 4px;
+				margin: 10px;
+				flex: 1;
+				display: flex;
+				white-space: nowrap;
+			}
+			.keypad > .keypad-row > .keypad-row-key > .keypad-row-key-main {
+				font-size: 300%;
+				display: inline;
+				text-align: center;
+				flex: 1;
+			}
+			.keypad > .keypad-row > .keypad-row-key > .keypad-row-key-secondary {
+				font-size: 150%;
+				display: inline;
+				padding-top: 12px;
+				text-align: center;
+				flex: 2;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="screen">
+			<div class="screen-inner"><span id="screen-inner-text">Sample tex</span><span id="screen-inner-character">t</span></div>
+		</div>
+		<div class="keypad">
+			<div class="keypad-row">
+				<div class="keypad-row-key">
+					<div class="keypad-row-key-main">1</div>
+					<div class="keypad-row-key-secondary"></div>
+				</div>
+				<div class="keypad-row-key">
+					<div class="keypad-row-key-main">2</div>
+					<div class="keypad-row-key-secondary">abc</div>
+				</div>
+				<div class="keypad-row-key">
+					<div class="keypad-row-key-main">3</div>
+					<div class="keypad-row-key-secondary">def</div>
+				</div>
+			</div>
+			<div class="keypad-row">
+				<div class="keypad-row-key">
+					<div class="keypad-row-key-main">4</div>
+					<div class="keypad-row-key-secondary">ghi</div>
+				</div>
+				<div class="keypad-row-key">
+					<div class="keypad-row-key-main">5</div>
+					<div class="keypad-row-key-secondary">jkl</div>
+				</div>
+				<div class="keypad-row-key">
+					<div class="keypad-row-key-main">6</div>
+					<div class="keypad-row-key-secondary">mno</div>
+				</div>
+			</div>
+			<div class="keypad-row">
+				<div class="keypad-row-key">
+					<div class="keypad-row-key-main">7</div>
+					<div class="keypad-row-key-secondary">pqrs</div>
+				</div>
+				<div class="keypad-row-key">
+					<div class="keypad-row-key-main">8</div>
+					<div class="keypad-row-key-secondary">tuv</div>
+				</div>
+				<div class="keypad-row-key">
+					<div class="keypad-row-key-main">9</div>
+					<div class="keypad-row-key-secondary">wxyz</div>
+				</div>
+			</div>
+			<div class="keypad-row">
+				<div class="keypad-row-key">
+					<div class="keypad-row-key-main">*</div>
+					<div class="keypad-row-key-secondary">+</div>
+				</div>
+				<div class="keypad-row-key">
+					<div class="keypad-row-key-main">0</div>
+					<div class="keypad-row-key-secondary">˽ ℹ</div>
+				</div>
+				<div class="keypad-row-key">
+					<div class="keypad-row-key-main">#</div>
+					<div class="keypad-row-key-secondary">♪ ⇑</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
