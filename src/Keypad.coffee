@@ -51,12 +51,26 @@ exports.Keypad = class extends EventEmitter
 	delay: 100
 
 	###*
+		List of available cases
+		@static
+		@property caselist
+		@type Object
+	###
+	@caselist: [
+		'Abc'
+		'abc'
+		'ABC'
+		'123'
+	]
+
+	###*
 		Uppercase of lowercase
 		@property case
 		@type String
 		@default 'Abc'
 	###
-	case: 'Abc'
+	# Value is dynamically set in constructor
+	case: null
 
 	###*
 		Characters that interrupt a sentence
@@ -75,6 +89,7 @@ exports.Keypad = class extends EventEmitter
 	constructor: (options = {}) ->
 		@[key] = val for key, val of options
 		@mapping = MapNokia
+		@case = exports.Keypad.caselist[0]
 		@on 'push', (key) => @ProcessKey key
 
 	###*
@@ -94,10 +109,21 @@ exports.Keypad = class extends EventEmitter
 			return @character = @mapping[key][current_index + 1] if @mapping[key][current_index + 1]?
 			return @character = @mapping[key][0]
 
-		# New or -other key pressed
+		# Inserting previous character is there was any
 		@InsertCharacter @character
 		@character = @mapping[key][0]
+		return @LoopCase() if @character is 'CASE'
 		@ResetTimeout()
+
+	###*
+		Looping through available cases
+		@method LoopCase
+	###
+	LoopCase: () ->
+		@character = null
+		current_index = exports.Keypad.caselist.indexOf @case
+		return @case = exports.Keypad.caselist[current_index + 1] if exports.Keypad.caselist[current_index + 1]?
+		@case = exports.Keypad.caselist[0]
 
 	###*
 		Returns character that will be inserted, with current case
@@ -117,7 +143,7 @@ exports.Keypad = class extends EventEmitter
 	###
 	InsertCharacter: (text) ->
 		text = @character unless text?
-		return unless text
+		return unless text?
 		inserted = @GetInsertCharacter()
 		@text += inserted
 		@character = null
