@@ -44,6 +44,9 @@
 				display: flex;
 				white-space: nowrap;
 			}
+			.keypad > .keypad-row > .keypad-row-key:hover {
+				background: rgba(0, 0, 0, 0.2);
+			}
 			.keypad > .keypad-row > .keypad-row-key > .keypad-row-key-main {
 				font-size: 300%;
 				display: inline;
@@ -66,60 +69,120 @@
 		<div class="keypad">
 			<div class="keypad-row">
 				<div class="keypad-row-key">
-					<div class="keypad-row-key-main">1</div>
+					<div class="keypad-row-key-main" id="key-1">1</div>
 					<div class="keypad-row-key-secondary"></div>
 				</div>
 				<div class="keypad-row-key">
-					<div class="keypad-row-key-main">2</div>
+					<div class="keypad-row-key-main" id="key-2">2</div>
 					<div class="keypad-row-key-secondary">abc</div>
 				</div>
 				<div class="keypad-row-key">
-					<div class="keypad-row-key-main">3</div>
+					<div class="keypad-row-key-main" id="key-3">3</div>
 					<div class="keypad-row-key-secondary">def</div>
 				</div>
 			</div>
 			<div class="keypad-row">
 				<div class="keypad-row-key">
-					<div class="keypad-row-key-main">4</div>
+					<div class="keypad-row-key-main" id="key-4">4</div>
 					<div class="keypad-row-key-secondary">ghi</div>
 				</div>
 				<div class="keypad-row-key">
-					<div class="keypad-row-key-main">5</div>
+					<div class="keypad-row-key-main" id="key-5">5</div>
 					<div class="keypad-row-key-secondary">jkl</div>
 				</div>
 				<div class="keypad-row-key">
-					<div class="keypad-row-key-main">6</div>
+					<div class="keypad-row-key-main" id="key-6">6</div>
 					<div class="keypad-row-key-secondary">mno</div>
 				</div>
 			</div>
 			<div class="keypad-row">
 				<div class="keypad-row-key">
-					<div class="keypad-row-key-main">7</div>
+					<div class="keypad-row-key-main" id="key-7">7</div>
 					<div class="keypad-row-key-secondary">pqrs</div>
 				</div>
 				<div class="keypad-row-key">
-					<div class="keypad-row-key-main">8</div>
+					<div class="keypad-row-key-main" id="key-8">8</div>
 					<div class="keypad-row-key-secondary">tuv</div>
 				</div>
 				<div class="keypad-row-key">
-					<div class="keypad-row-key-main">9</div>
+					<div class="keypad-row-key-main" id="key-9">9</div>
 					<div class="keypad-row-key-secondary">wxyz</div>
 				</div>
 			</div>
 			<div class="keypad-row">
 				<div class="keypad-row-key">
-					<div class="keypad-row-key-main">*</div>
+					<div class="keypad-row-key-main" id="key-a">*</div>
 					<div class="keypad-row-key-secondary">+</div>
 				</div>
 				<div class="keypad-row-key">
-					<div class="keypad-row-key-main">0</div>
+					<div class="keypad-row-key-main" id="key-0">0</div>
 					<div class="keypad-row-key-secondary">˽ ℹ</div>
 				</div>
 				<div class="keypad-row-key">
-					<div class="keypad-row-key-main">#</div>
+					<div class="keypad-row-key-main" id="key-b">#</div>
 					<div class="keypad-row-key-secondary">♪ ⇑</div>
 				</div>
 			</div>
 		</div>
+		<script src="lib/main.js"></script>
+		<script>
+			var Keypad = require('keypad').Keypad;
+
+			pad = new Keypad();
+
+			document.getElementById('key-1').addEventListener('click', function () {
+				pad.emit('push', '1');
+			});
+
+			document.getElementById('key-2').addEventListener('click', function () {
+				pad.emit('push', '2');
+			});
+
+			document.getElementById('key-3').addEventListener('click', function () {
+				pad.emit('push', '3');
+			});
+
+			document.getElementById('key-4').addEventListener('click', function () {
+				pad.emit('push', '4');
+			});
+
+			document.getElementById('key-5').addEventListener('click', function () {
+				pad.emit('push', '5');
+			});
+
+			document.getElementById('key-6').addEventListener('click', function () {
+				pad.emit('push', '6');
+			});
+
+			document.getElementById('key-7').addEventListener('click', function () {
+				pad.emit('push', '7');
+			});
+
+			document.getElementById('key-8').addEventListener('click', function () {
+				pad.emit('push', '8');
+			});
+
+			document.getElementById('key-9').addEventListener('click', function () {
+				pad.emit('push', '9');
+			});
+
+			document.getElementById('key-a').addEventListener('click', function () {
+				pad.emit('push', '*');
+			});
+
+			document.getElementById('key-0').addEventListener('click', function () {
+				pad.emit('push', '0');
+			});
+
+			document.getElementById('key-b').addEventListener('click', function () {
+				pad.emit('push', '#');
+			});
+
+			setInterval(function () {
+				document.getElementById('key-8').innerHTML = pad.character;
+				document.getElementById('key-8').innerHTML = pad.text;
+			}, 50);
+
+		</script>
 	</body>
 </html>
