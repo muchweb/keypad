@@ -1,0 +1,19 @@
+{
+  "name": "keypad",
+  "version": "0.2.0",
+  "homepage": "https://github.com/muchweb/keypad",
+  "description": "12-key keyboard layout emulation, similar to one that is used in mobile phones",
+  "main": "lib/main.js",
+  "authors": [
+    "muchweb <aleks@s-ko.net>"
+  ],
+  "license": "GPL-3.0+",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "npm-debug.log",
+    "src"
+  ]
+}
