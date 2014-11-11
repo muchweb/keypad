@@ -59,7 +59,7 @@ exports.Typing =
 										test.strictEqual item.text, 'Test'
 
 										test.done()
-									, 400
+									, 1000
 								, 10
 							, 10
 						, 10

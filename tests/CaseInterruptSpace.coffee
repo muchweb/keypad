@@ -32,6 +32,6 @@ exports.CaseInterruptSpace =
 					test.strictEqual item.text, 'A a'
 
 					test.done()
-				, 400
+				, 1000
 			, 10
 		, 10

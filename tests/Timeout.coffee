@@ -20,5 +20,5 @@ exports.Timeout =
 				test.strictEqual item.text, '..'
 
 				test.done()
-			, 200
-		, 200
+			, 1000
+		, 1000

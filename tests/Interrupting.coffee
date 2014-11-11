@@ -20,5 +20,5 @@ exports.Interrupt =
 				test.strictEqual item.text, 'Aj'
 
 				test.done()
-			, 200
+			, 1000
 		, 200

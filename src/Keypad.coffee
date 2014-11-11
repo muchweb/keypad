@@ -53,9 +53,9 @@ exports.Keypad = class extends EventEmitter
 		Delay for typing timeout
 		@property delay
 		@type Number
-		@default 100
+		@default 500
 	###
-	delay: 100
+	delay: 500
 
 	###*
 		List of available cases

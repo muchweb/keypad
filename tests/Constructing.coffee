@@ -9,7 +9,7 @@ exports.Constructing =
 
 	'default delay': (test) ->
 		item = new Keypad
-		test.strictEqual item.delay, 100
+		test.strictEqual item.delay, 500
 		test.done()
 
 	'default text': (test) ->

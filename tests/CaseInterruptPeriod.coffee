@@ -32,6 +32,6 @@ exports.CaseInterruptPeriod =
 					test.strictEqual item.text, 'A.A'
 
 					test.done()
-				, 400
+				, 1000
 			, 10
 		, 10

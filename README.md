@@ -19,7 +19,7 @@ Sony Ericsson mapping was typed in from this model:
 ```
 var Keypad = require('keypad').Keypad;
 pad = new Keypad({
-    delay: 100,
+    delay: 500,
     layout: 'nokia',
 });
 ```
