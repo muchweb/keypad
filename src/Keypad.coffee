@@ -59,18 +59,7 @@ exports.Keypad = class extends EventEmitter
 	constructor: (options = {}) ->
 		@[key] = val for key, val of options
 		@mapping = MapNokia
-		@on '1', => @ProcessKey '1'
-		@on '2', => @ProcessKey '2'
-		@on '3', => @ProcessKey '3'
-		@on '4', => @ProcessKey '4'
-		@on '5', => @ProcessKey '5'
-		@on '6', => @ProcessKey '6'
-		@on '7', => @ProcessKey '7'
-		@on '8', => @ProcessKey '8'
-		@on '9', => @ProcessKey '9'
-		@on '*', => @ProcessKey '*'
-		@on '0', => @ProcessKey '0'
-		@on '#', => @ProcessKey '#'
+		@on 'push', (key) => @ProcessKey key
 
 	###*
 		Process a keypress
@@ -86,8 +75,8 @@ exports.Keypad = class extends EventEmitter
 		# In the process of typing, same key pressed
 		if current_index >= 0
 			@ResetTimeout()
-			return @character = @mapping[key][current_index + 1] if @mapping[key][current_index + 1]
-			@character = @mapping[key][0]
+			return @character = @mapping[key][current_index + 1] if @mapping[key][current_index + 1]?
+			return @character = @mapping[key][0]
 
 		# New or -other key pressed
 		@InsertCharacter @character
@@ -97,11 +86,11 @@ exports.Keypad = class extends EventEmitter
 	###*
 		Apply selected (typed) text
 		@method InsertCharacter
-		@param {String} text Selecter (typed) string
+		@param {String} text Selected (typed) string
 	###
 	InsertCharacter: (text) ->
 		text = @character unless text?
-		throw new Error 'Please specify target text' unless text
+		return unless text
 		@text += text
 		@character = null
 
