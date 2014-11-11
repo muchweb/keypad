@@ -1,6 +1,6 @@
 all: lib/main.js
 
-test: ./node_modules/.bin/nodeunit
+test: lib/main.js ./node_modules/.bin/nodeunit
 	./node_modules/.bin/nodeunit tests/*
 
 clean:

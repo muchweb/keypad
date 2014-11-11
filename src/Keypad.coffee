@@ -110,31 +110,37 @@ exports.Keypad = class extends EventEmitter
 	###
 	ProcessKey: (key) ->
 		throw new Error 'Please specify pressed key code' unless key?
-
 		return @Backspace() if key is 'c'
-
 		throw new Error "This key code was not found in mapping: '#{key}'" unless @mapping[key]?
 
+		# Looking if key is a sequence
 		current_index = @mapping[key].indexOf @character
 
-		# In the process of typing, same key pressed
+		# In the process of typing, same key pressed. Cycling choices
 		if current_index >= 0
 			@ResetTimeout()
 			return @character = @mapping[key][current_index + 1] if @mapping[key][current_index + 1]?
 			return @character = @mapping[key][0]
 
+		# There was no key or different (new) key pressed
 		# Inserting previous character is there was any
 		@InsertCharacter @character
+
+		# Saving current new key
 		@character = @mapping[key][0]
-		return @LoopCase() if @character is 'CASE'
+
+		# Setting new key timeout
 		@ResetTimeout()
+
+		# Switching case immediately, interrupting normal key sequences
+		return @LoopCase() if @character is 'CASE'
 
 	###*
 		Remove last character
 		@method Backspace
 	###
 	Backspace: ->
-		@character = null
+		@ClearKeys()
 		return null if @text.length is 0
 		@text = @text.slice 0, -1
 
@@ -143,7 +149,7 @@ exports.Keypad = class extends EventEmitter
 		@method LoopCase
 	###
 	LoopCase: ->
-		@character = null
+		@ClearKeys()
 		current_index = exports.Keypad.caselist.indexOf @case
 		return @case = exports.Keypad.caselist[current_index + 1] if exports.Keypad.caselist[current_index + 1]?
 		@case = exports.Keypad.caselist[0]
@@ -169,15 +175,24 @@ exports.Keypad = class extends EventEmitter
 		return unless text?
 		inserted = @GetInsertCharacter()
 		@text += inserted
-		@character = null
+		@ClearKeys()
 		@case = 'abc' if @case isnt 'ABC'
 		@case = 'Abc' if @case isnt 'ABC' and (@interrupt_case.indexOf inserted) >= 0
+
+	###*
+		Resetting current typing state
+		@method ClearKeys
+	###
+	ClearKeys: ->
+		@character = null
+		clearTimeout @timeout if @timeout?
 
 	###*
 		Resetting typing tymeout
 		@method ResetTimeout
 	###
 	ResetTimeout: ->
+		clearTimeout @timeout if @timeout?
 		@timeout = setTimeout =>
 			@InsertCharacter()
 			@timeout = null
