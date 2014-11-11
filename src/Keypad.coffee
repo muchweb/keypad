@@ -51,6 +51,22 @@ exports.Keypad = class extends EventEmitter
 	delay: 100
 
 	###*
+		Uppercase of lowercase
+		@property case
+		@type String
+		@default 'Abc'
+	###
+	case: 'Abc'
+
+	###*
+		Characters that interrupt a sentence
+		@property interrupt_case
+		@type String
+		@default '.\n'
+	###
+	interrupt_case: '.\n'
+
+	###*
 		12-key keyboard layout emulation, similar to one that is used in mobile phones
 		@class Keypad
 		@extends EventEmitter
@@ -84,6 +100,17 @@ exports.Keypad = class extends EventEmitter
 		@ResetTimeout()
 
 	###*
+		Returns character that will be inserted, with current case
+		@method GetInsertCharacter
+		@param {String} text Selected (typed) string
+	###
+	GetInsertCharacter: (text) ->
+		text = @character unless text?
+		return null unless text?
+		text = text.toUpperCase() if @case[0] is 'A'
+		text
+
+	###*
 		Apply selected (typed) text
 		@method InsertCharacter
 		@param {String} text Selected (typed) string
@@ -91,8 +118,11 @@ exports.Keypad = class extends EventEmitter
 	InsertCharacter: (text) ->
 		text = @character unless text?
 		return unless text
-		@text += text
+		inserted = @GetInsertCharacter()
+		@text += inserted
 		@character = null
+		@case = 'abc' if @case isnt 'ABC'
+		@case = 'Abc' if @case isnt 'ABC' and (@interrupt_case.indexOf inserted) >= 0
 
 	###*
 		Resetting typing tymeout
