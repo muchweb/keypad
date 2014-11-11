@@ -124,65 +124,6 @@
 				</div>
 			</div>
 		</div>
-		<script src="lib/main.js"></script>
-		<script>
-			var Keypad = require('keypad').Keypad;
-
-			pad = new Keypad();
-
-			document.getElementById('key-1').addEventListener('click', function () {
-				pad.emit('push', '1');
-			});
-
-			document.getElementById('key-2').addEventListener('click', function () {
-				pad.emit('push', '2');
-			});
-
-			document.getElementById('key-3').addEventListener('click', function () {
-				pad.emit('push', '3');
-			});
-
-			document.getElementById('key-4').addEventListener('click', function () {
-				pad.emit('push', '4');
-			});
-
-			document.getElementById('key-5').addEventListener('click', function () {
-				pad.emit('push', '5');
-			});
-
-			document.getElementById('key-6').addEventListener('click', function () {
-				pad.emit('push', '6');
-			});
-
-			document.getElementById('key-7').addEventListener('click', function () {
-				pad.emit('push', '7');
-			});
-
-			document.getElementById('key-8').addEventListener('click', function () {
-				pad.emit('push', '8');
-			});
-
-			document.getElementById('key-9').addEventListener('click', function () {
-				pad.emit('push', '9');
-			});
-
-			document.getElementById('key-a').addEventListener('click', function () {
-				pad.emit('push', '*');
-			});
-
-			document.getElementById('key-0').addEventListener('click', function () {
-				pad.emit('push', '0');
-			});
-
-			document.getElementById('key-b').addEventListener('click', function () {
-				pad.emit('push', '#');
-			});
-
-			setInterval(function () {
-				document.getElementById('key-8').innerHTML = pad.character;
-				document.getElementById('key-8').innerHTML = pad.text;
-			}, 50);
-
-		</script>
+		<script src="lib/browser.js"></script>
 	</body>
 </html>

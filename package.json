@@ -1,0 +1,9 @@
+{
+  "name": "keypad-www",
+  "private": true,
+  "dependencies": {
+    "browserify": "^6.3.2",
+    "coffee-script": "^1.8.0",
+    "keypad": "^0.2.0"
+  }
+}
