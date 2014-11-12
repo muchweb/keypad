@@ -6,12 +6,12 @@ exports.Timeout =
 		item = new Keypad
 		test.strictEqual item.text, ''
 
-		item.emit 'push', '1'
+		item.emit 'press', '1'
 		test.strictEqual item.character, '.'
 		test.strictEqual item.text, ''
 
 		setTimeout ->
-			item.emit 'push', '1'
+			item.emit 'press', '1'
 			test.strictEqual item.character, '.'
 			test.strictEqual item.text, '.'
 

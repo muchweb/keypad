@@ -7,19 +7,19 @@ exports.CaseSwitch =
 
 		test.strictEqual item.case, 'Abc', 'run 1'
 
-		item.emit 'push', '#'
+		item.emit 'press', '#'
 
 		test.strictEqual item.case, 'abc', 'run 2'
 
-		item.emit 'push', '#'
+		item.emit 'press', '#'
 
 		test.strictEqual item.case, 'ABC', 'run 3'
 
-		item.emit 'push', '#'
+		item.emit 'press', '#'
 
 		test.strictEqual item.case, '123', 'run 4'
 
-		item.emit 'push', '#'
+		item.emit 'press', '#'
 
 		test.strictEqual item.case, 'Abc', 'run 5'
 

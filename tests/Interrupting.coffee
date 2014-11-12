@@ -6,12 +6,12 @@ exports.Interrupt =
 		item = new Keypad
 		test.strictEqual item.text, ''
 
-		item.emit 'push', '2'
+		item.emit 'press', '2'
 		test.strictEqual item.character, 'a'
 		test.strictEqual item.text, ''
 
 		setTimeout ->
-			item.emit 'push', '5'
+			item.emit 'press', '5'
 			test.strictEqual item.character, 'j'
 			test.strictEqual item.text, 'A'
 

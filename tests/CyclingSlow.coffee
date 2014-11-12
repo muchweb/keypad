@@ -7,57 +7,57 @@ exports.CyclingSlow =
 		test.strictEqual item.text, ''
 
 		setTimeout ->
-			item.emit 'push', '1'
+			item.emit 'press', '1'
 			test.strictEqual item.character, '.'
 			test.strictEqual item.text, ''
 
 			setTimeout ->
-				item.emit 'push', '1'
+				item.emit 'press', '1'
 				test.strictEqual item.character, ','
 				test.strictEqual item.text, ''
 
 				setTimeout ->
-					item.emit 'push', '1'
+					item.emit 'press', '1'
 					test.strictEqual item.character, '?'
 					test.strictEqual item.text, ''
 
 					setTimeout ->
-						item.emit 'push', '1'
+						item.emit 'press', '1'
 						test.strictEqual item.character, '!'
 						test.strictEqual item.text, ''
 
 						setTimeout ->
-							item.emit 'push', '1'
+							item.emit 'press', '1'
 							test.strictEqual item.character, '\''
 							test.strictEqual item.text, ''
 
 							setTimeout ->
-								item.emit 'push', '1'
+								item.emit 'press', '1'
 								test.strictEqual item.character, '"'
 								test.strictEqual item.text, ''
 
 								setTimeout ->
-									item.emit 'push', '1'
+									item.emit 'press', '1'
 									test.strictEqual item.character, '1'
 									test.strictEqual item.text, ''
 
 									setTimeout ->
-										item.emit 'push', '1'
+										item.emit 'press', '1'
 										test.strictEqual item.character, '-'
 										test.strictEqual item.text, ''
 
 										setTimeout ->
-											item.emit 'push', '1'
+											item.emit 'press', '1'
 											test.strictEqual item.character, '('
 											test.strictEqual item.text, ''
 
 											setTimeout ->
-												item.emit 'push', '1'
+												item.emit 'press', '1'
 												test.strictEqual item.character, ')'
 												test.strictEqual item.text, ''
 
 												setTimeout ->
-													item.emit 'push', '1'
+													item.emit 'press', '1'
 													test.strictEqual item.character, '@'
 													test.strictEqual item.text, ''
 

@@ -6,63 +6,63 @@ exports.Cycling =
 		item = new Keypad
 		test.strictEqual item.text, ''
 
-		item.emit 'push', '1'
+		item.emit 'press', '1'
 		test.strictEqual item.character, '.'
 		test.strictEqual item.text, ''
 
-		item.emit 'push', '1'
+		item.emit 'press', '1'
 		test.strictEqual item.character, ','
 		test.strictEqual item.text, ''
 
-		item.emit 'push', '1'
+		item.emit 'press', '1'
 		test.strictEqual item.character, '?'
 		test.strictEqual item.text, ''
 
-		item.emit 'push', '1'
+		item.emit 'press', '1'
 		test.strictEqual item.character, '!'
 		test.strictEqual item.text, ''
 
-		item.emit 'push', '1'
+		item.emit 'press', '1'
 		test.strictEqual item.character, '\''
 		test.strictEqual item.text, ''
 
-		item.emit 'push', '1'
+		item.emit 'press', '1'
 		test.strictEqual item.character, '"'
 		test.strictEqual item.text, ''
 
-		item.emit 'push', '1'
+		item.emit 'press', '1'
 		test.strictEqual item.character, '1'
 		test.strictEqual item.text, ''
 
-		item.emit 'push', '1'
+		item.emit 'press', '1'
 		test.strictEqual item.character, '-'
 		test.strictEqual item.text, ''
 
-		item.emit 'push', '1'
+		item.emit 'press', '1'
 		test.strictEqual item.character, '('
 		test.strictEqual item.text, ''
 
-		item.emit 'push', '1'
+		item.emit 'press', '1'
 		test.strictEqual item.character, ')'
 		test.strictEqual item.text, ''
 
-		item.emit 'push', '1'
+		item.emit 'press', '1'
 		test.strictEqual item.character, '@'
 		test.strictEqual item.text, ''
 
-		item.emit 'push', '1'
+		item.emit 'press', '1'
 		test.strictEqual item.character, '/'
 		test.strictEqual item.text, ''
 
-		item.emit 'push', '1'
+		item.emit 'press', '1'
 		test.strictEqual item.character, ':'
 		test.strictEqual item.text, ''
 
-		item.emit 'push', '1'
+		item.emit 'press', '1'
 		test.strictEqual item.character, '_'
 		test.strictEqual item.text, ''
 
-		item.emit 'push', '1'
+		item.emit 'press', '1'
 		test.strictEqual item.character, '.'
 		test.strictEqual item.text, ''
 
