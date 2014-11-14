@@ -101,8 +101,8 @@ exports.Keypad = class extends EventEmitter
 		{KeyMap} = require './MapNokia.js'
 		@mapping = KeyMap
 		@case = exports.Keypad.caselist[0]
-		@on 'press', (key, immediate=false) => @ProcessKeyPress key, immediate
-		@on 'hold', (key) => @ProcessKeyHold key
+		@on 'press', @ProcessKeyPress
+		@on 'hold', @ProcessKeyHold
 
 	###*
 		Process a keyhold
@@ -140,7 +140,6 @@ exports.Keypad = class extends EventEmitter
 		# Saving current new key
 		@character = @mapping[key][0]
 
-		console.log 'immediate', immediate
 		if immediate
 			# Inserting right now, if that was requested
 			@InsertCharacter @character

@@ -41,15 +41,15 @@ exports.KeypadHelper = class extends Keypad
 	###
 	constructor: (options = {}) ->
 		super
-
-		@on 'down', (key) => @ProcessKeyDown key
-		@on 'up', (key) => @ProcessKeyUp key
+		@on 'down', @ProcessKeyDown
+		@on 'up', @ProcessKeyUp
 
 	###*
 		@method ProcessKeyDown
 		@param {String} key Key character
 	###
 	ProcessKeyDown: (key) ->
+		console.log 'ProcessKeyDown', key
 		@ProcessKeyUp @holding_key, true if @holding_timeout?
 		@holding_key = key
 
@@ -64,6 +64,7 @@ exports.KeypadHelper = class extends Keypad
 		@method ProcessKeyUp
 	###
 	ProcessKeyUp: (key, immediate=false) ->
+		console.log 'ProcessKeyUp', key, immediate
 		return if key isnt @holding_key
 		@emit 'press', @holding_key
 		clearTimeout @holding_timeout
