@@ -101,8 +101,8 @@ exports.Keypad = class extends EventEmitter
 		{KeyMap} = require './MapNokia.js'
 		@mapping = KeyMap
 		@case = exports.Keypad.caselist[0]
-		@on 'press', (key) => @ProcessKeyPress key
-		@on 'hold', (key) => @ProcessKeyHold key
+		@on 'press', @ProcessKeyPress
+		@on 'hold', @ProcessKeyHold
 
 	###*
 		Process a keyhold
@@ -119,7 +119,7 @@ exports.Keypad = class extends EventEmitter
 		@method ProcessKeyPress
 		@param {String} key Key character
 	###
-	ProcessKeyPress: (key) ->
+	ProcessKeyPress: (key, immediate=false) ->
 		throw new Error 'Please specify pressed key code' unless key?
 		return @Backspace() if key is 'c'
 		throw new Error "This key code was not found in mapping: '#{key}'" unless @mapping[key]?
@@ -140,8 +140,12 @@ exports.Keypad = class extends EventEmitter
 		# Saving current new key
 		@character = @mapping[key][0]
 
-		# Setting new key timeout
-		@ResetTimeout()
+		if immediate
+			# Inserting right now, if that was requested
+			@InsertCharacter @character
+		else
+			# Setting new key timeout
+			@ResetTimeout()
 
 		# Switching case immediately, interrupting normal key sequences
 		return @LoopCase() if @character is 'CASE'
