@@ -35,8 +35,8 @@ exports.KeypadHelper = class extends Keypad
 
 	###*
 		12-key keyboard layout emulation, similar to one that is used in mobile phones
-		@class Keypad
-		@extends EventEmitter
+		@class KeypadHelperHcheck
+		@extends Keypad
 		@param {[Object]} options Overwrite default `Keypad` options
 	###
 	constructor: (options = {}) ->
@@ -49,7 +49,6 @@ exports.KeypadHelper = class extends Keypad
 		@param {String} key Key character
 	###
 	ProcessKeyDown: (key) ->
-		console.log 'ProcessKeyDown', key
 		@ProcessKeyUp @holding_key, true if @holding_timeout?
 		@holding_key = key
 
@@ -64,7 +63,6 @@ exports.KeypadHelper = class extends Keypad
 		@method ProcessKeyUp
 	###
 	ProcessKeyUp: (key, immediate=false) ->
-		console.log 'ProcessKeyUp', key, immediate
 		return if key isnt @holding_key
 		@emit 'press', @holding_key
 		clearTimeout @holding_timeout
