@@ -88,6 +88,14 @@ exports.Keypad = class extends EventEmitter
 	interrupt_case: '.\n'
 
 	###*
+		Loading all pre-built keymaps
+		@property maps
+		@type Object
+		@default null
+	###
+	maps: null
+
+	###*
 		12-key keyboard layout emulation, similar to one that is used in mobile phones
 		@class Keypad
 		@extends EventEmitter
@@ -95,11 +103,12 @@ exports.Keypad = class extends EventEmitter
 	###
 	constructor: (options = {}) ->
 		@[key] = val for key, val of options
-		throw new Error 'Custom maps cannot be selected in browser demo' if window? and @map_name isnt 'nokia'
-		# {KeyMap} = require "./Map#{@map_name[0].toUpperCase()}#{@map_name.slice 1}.js" if window?
-		# Used for browserify demo generation
-		{KeyMap} = require './MapNokia.js'
-		@mapping = KeyMap
+		unless @mapping?
+			@maps =
+				nokia: (require "./MapNokia.js").KeyMap
+				sonyericsson: (require "./MapSonyericsson.js").KeyMap
+			throw new Error 'Specified map name does not exist' unless @maps[@map_name]?
+			@mapping = @maps[@map_name]
 		@case = exports.Keypad.caselist[0]
 		@on 'press', @ProcessKeyPress
 		@on 'hold', @ProcessKeyHold
