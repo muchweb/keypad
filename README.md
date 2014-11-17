@@ -1,4 +1,5 @@
-# Keypad  [![Build Status](https://travis-ci.org/muchweb/keypad.svg)](https://travis-ci.org/muchweb/keypad) [![NPM version](https://badge.fury.io/js/keypad.svg)](http://badge.fury.io/js/keypad) ![License: GPLv3+](http://img.shields.io/badge/license-GPLv3%2B-brightgreen.svg) [![Dependency Status](https://gemnasium.com/muchweb/keypad.svg)](https://gemnasium.com/muchweb/keypad)
+# Keypad
+[![Build Status](https://travis-ci.org/muchweb/keypad.svg)](https://travis-ci.org/muchweb/keypad) [![Coverage Status](https://img.shields.io/coveralls/muchweb/keypad.svg)](https://coveralls.io/r/muchweb/keypad) [![Dependency Status](https://gemnasium.com/muchweb/keypad.svg)](https://gemnasium.com/muchweb/keypad) [![NPM version](https://badge.fury.io/js/keypad.svg)](http://badge.fury.io/js/keypad) ![License: GPLv3+](http://img.shields.io/badge/license-GPLv3%2B-brightgreen.svg)
 
 12-key keyboard layout emulation, similar to one that is used in mobile phones.
 
