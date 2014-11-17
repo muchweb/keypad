@@ -131,6 +131,7 @@ exports.Keypad = class extends EventEmitter
 	ProcessKeyHold: (key) ->
 		throw new Error 'Please specify pressed key code' unless key?
 		return @Backspace() if key is 'c'
+		throw new Error "This key code was not found in mapping: '#{key}'" unless @mapping[key]?
 		@InsertCharacter key
 
 	###*
