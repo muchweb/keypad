@@ -21,10 +21,9 @@ coverage.info: $(COVS) ./node_modules/.bin/nodeunit
 	KEYPAD_COVERAGE=1 ./node_modules/.bin/nodeunit --reporter=lcov tests/* > coverage.info
 
 coveralls: coverage.info ./node_modules/.bin/coveralls
-	KEYPAD_COVERAGE=1 ./node_modules/.bin/nodeunit --reporter=lcov tests/* | ./node_modules/.bin/coveralls
+	cat coverage.info | ./node_modules/.bin/coveralls
 
 report: $(LIBS) coverage.info
-	make clean
 	genhtml coverage.info
 
 clean:
