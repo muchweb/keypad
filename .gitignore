@@ -1,3 +1,6 @@
+*.css
+*.html
+*.png
 coverage.info
 lib
 lib-cov

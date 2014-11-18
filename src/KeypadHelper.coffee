@@ -51,7 +51,6 @@ exports.KeypadHelper = class extends Keypad
 	ProcessKeyDown: (key) ->
 		@ProcessKeyUp @holding_key, true if @holding_timeout?
 		@holding_key = key
-
 		@holding_timeout = setTimeout =>
 			@emit 'hold', @holding_key
 			clearTimeout @holding_timeout
@@ -63,8 +62,8 @@ exports.KeypadHelper = class extends Keypad
 		@method ProcessKeyUp
 	###
 	ProcessKeyUp: (key, immediate=false) ->
-		return if key isnt @holding_key
-		@emit 'press', @holding_key
+		return if key? and key isnt @holding_key
 		clearTimeout @holding_timeout
 		@holding_timeout = null
+		@emit 'press', @holding_key, immediate
 		@holding_key = null

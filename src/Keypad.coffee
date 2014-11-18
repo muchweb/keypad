@@ -160,15 +160,18 @@ exports.Keypad = class extends EventEmitter
 		# Saving current new key
 		@character = @mapping[key][0]
 
+		# Switching case immediately, interrupting normal key sequences
+		return @LoopCase() if @character is 'CASE'
+
 		if immediate
 			# Inserting right now, if that was requested
 			@InsertCharacter @character
-		else
-			# Setting new key timeout
-			@ResetTimeout()
+			clearTimeout @timeout if @timeout?
+			@timeout = null
+			return
 
-		# Switching case immediately, interrupting normal key sequences
-		return @LoopCase() if @character is 'CASE'
+		# Setting new key timeout
+		@ResetTimeout()
 
 	###*
 		Remove last character
