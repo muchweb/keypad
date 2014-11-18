@@ -111,6 +111,13 @@ exports.Keypad = class extends EventEmitter
 	###
 	constructor: (options = {}) ->
 		@[key] = val for key, val of options
+
+		# Loading default (built-in) set of key maps
+		unless @maps?
+			@maps =
+				nokia: require './MapNokia.js'
+				sonyericsson: require './MapSonyericsson.js'
+
 		@SetMapping @map_name, @map_language unless @mapping?
 
 		@case = exports.Keypad.caselist[0]
@@ -123,14 +130,11 @@ exports.Keypad = class extends EventEmitter
 		@param {String} name Target mapping name
 	###
 	SetMapping: (name, language) ->
-		# Loading default (built-in) set of key maps
-		unless @maps?
-			@maps =
-				nokia: (require "./MapNokia.js").KeyMap
-				sonyericsson: (require "./MapSonyericsson.js").KeyMap
 		throw new Error 'Specified map name does not exist' unless @maps[name]?
+		throw new Error 'Specified language does not exist in a mapping' unless @maps[name][language]?
 		@map_name = name
-		@mapping = @maps[@map_name]
+		@map_language = language
+		@mapping = @maps[@map_name][@map_language]
 
 	###*
 		Process a keyhold
