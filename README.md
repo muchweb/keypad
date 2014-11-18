@@ -3,12 +3,12 @@
 
 12-key keyboard layout emulation, similar to one that is used in mobile phones.
 
-Nokia mappings were manually typed to match (both are confirmed to use the same mapping):
+Nokia mappings compatible with these models:
 
  - Nokia 5220
  - Nokia X3-02
 
-Sony Ericsson mapping was typed in from this model:
+Sony Ericsson mappings are compatible with these models:
 
  - Sony Ericsson C902
 
@@ -17,13 +17,34 @@ Sony Ericsson mapping was typed in from this model:
  - `delay`: Key press delay between letters are reset, *default*: `50`
  - `layout`: Mainly affects punctuation, *default*: `'nokia'`
 
-```
+```javascript
 var Keypad = require('keypad').Keypad;
 pad = new Keypad({
     delay: 500,
     layout: 'nokia',
 });
 ```
+
+Emulating a button press:
+```javascript
+pad.emit('press', '1');
+```
+
+Emulating a button hold:
+```javascript
+pad.emit('hold', '2');
+```
+
+Getting resulting text:
+```javascript
+console.log(pad.text);
+```
+
+Allowed keys are: `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `*`,  `0`, `#`,  `c`.
+
+## When is this useful?
+
+When you don't like 'touch-screens'. Arduino, Raspberry PI, Tessel.
 
 ## Building
 
@@ -44,15 +65,8 @@ pad = new Keypad({
 
 ## :free: License
 
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
+You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
