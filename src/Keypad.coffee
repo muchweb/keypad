@@ -210,10 +210,9 @@ exports.Keypad = class extends EventEmitter
 		@method GetInsertCharacter
 		@param {String} text Selected (typed) string
 	###
-	GetInsertCharacter: (text) ->
-		text = @character unless text?
+	GetInsertCharacter: (text=@character) ->
 		return null unless text?
-		text = text.toUpperCase() if @case[0] is 'A'
+		return text.toUpperCase() if @case[0] is 'A'
 		text
 
 	###*
@@ -221,8 +220,7 @@ exports.Keypad = class extends EventEmitter
 		@method InsertCharacter
 		@param {String} text Selected (typed) string
 	###
-	InsertCharacter: (text) ->
-		text = @character unless text?
+	InsertCharacter: (text=@character) ->
 		return unless text?
 		inserted = @GetInsertCharacter text
 		@text += inserted
@@ -236,15 +234,24 @@ exports.Keypad = class extends EventEmitter
 	###
 	ClearKeys: ->
 		@character = null
-		clearTimeout @timeout if @timeout?
+		@ClearTimeout()
 
 	###*
 		Resetting typing tymeout
 		@method ResetTimeout
 	###
 	ResetTimeout: ->
-		clearTimeout @timeout if @timeout?
+		@ClearTimeout()
 		@timeout = setTimeout =>
 			@InsertCharacter()
 			@timeout = null
 		, @delay
+
+	###*
+		Clear current keys timeout
+		@method ClearTimeout
+	###
+	ClearTimeout: ->
+		if @timeout?
+			clearTimeout @timeout
+			@timeout = null
