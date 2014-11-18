@@ -18,6 +18,14 @@ exports.Keypad = class extends EventEmitter
 	map_name: 'nokia'
 
 	###*
+		Input language
+		@property map_language
+		@type String
+		@default 'en'
+	###
+	map_language: 'en'
+
+	###*
 		Full typed in text
 		@property text
 		@type String
@@ -103,7 +111,7 @@ exports.Keypad = class extends EventEmitter
 	###
 	constructor: (options = {}) ->
 		@[key] = val for key, val of options
-		@SetMapping @map_name unless @mapping?
+		@SetMapping @map_name, @map_language unless @mapping?
 
 		@case = exports.Keypad.caselist[0]
 		@on 'press', @ProcessKeyPress
@@ -114,7 +122,8 @@ exports.Keypad = class extends EventEmitter
 		@method SetMapping
 		@param {String} name Target mapping name
 	###
-	SetMapping: (name) ->
+	SetMapping: (name, language) ->
+		# Loading default (built-in) set of key maps
 		unless @maps?
 			@maps =
 				nokia: (require "./MapNokia.js").KeyMap

@@ -5,7 +5,7 @@
 
 'use strict'
 
-exports.KeyMap =
+exports.en =
 	'1': [
 		'.'
 		','
