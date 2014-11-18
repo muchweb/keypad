@@ -129,7 +129,7 @@ exports.Keypad = class extends EventEmitter
 		@method SetMapping
 		@param {String} name Target mapping name
 	###
-	SetMapping: (name, language) ->
+	SetMapping: (name=@map_name, language=@map_language) ->
 		throw new Error 'Specified map name does not exist' unless @maps[name]?
 		throw new Error 'Specified language does not exist in a mapping' unless @maps[name][language]?
 		@map_name = name
