@@ -1,8 +1,8 @@
-all: bin/browser.js
+all: dist/browser.js
 
-bin/browser.js: lib/browser.js
-	mkdir -p bin
-	cp lib/browser.js bin/browser.js
+dist/browser.js: lib/browser.js
+	mkdir -p dist
+	cp lib/browser.js dist/browser.js
 
 lib/browser.js: lib/main.js ./node_modules/.bin/browserify
 	./node_modules/.bin/browserify lib/main.js -o lib/browser.js --debug
