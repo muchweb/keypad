@@ -2,6 +2,14 @@
 
 exports.SetMapping =
 
+	'Dynamically: no map name': (test) ->
+		item = new Keypad
+
+		test.throws ->
+			item.SetMapping()
+
+		test.done()
+
 	'Dynamically: just correct mapping': (test) ->
 		item = new Keypad
 

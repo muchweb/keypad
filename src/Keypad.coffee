@@ -129,7 +129,8 @@ exports.Keypad = class extends EventEmitter
 		@method SetMapping
 		@param {String} name Target mapping name
 	###
-	SetMapping: (name=@map_name, language=@map_language) ->
+	SetMapping: (name, language=@map_language) ->
+		throw new Error 'Please specify target map name' unless name?
 		throw new Error 'Specified map name does not exist' unless @maps[name]?
 		throw new Error 'Specified language does not exist in a mapping' unless @maps[name][language]?
 		@map_name = name
@@ -179,9 +180,7 @@ exports.Keypad = class extends EventEmitter
 		if immediate
 			# Inserting right now, if that was requested
 			@InsertCharacter @character
-			clearTimeout @timeout if @timeout?
-			@timeout = null
-			return
+			return @ClearTimeout()
 
 		# Setting new key timeout
 		@ResetTimeout()
