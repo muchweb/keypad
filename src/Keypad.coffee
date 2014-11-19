@@ -18,6 +18,14 @@ exports.Keypad = class extends EventEmitter
 	map_name: 'nokia'
 
 	###*
+		Input language
+		@property map_language
+		@type String
+		@default 'en'
+	###
+	map_language: 'en'
+
+	###*
 		Full typed in text
 		@property text
 		@type String
@@ -103,7 +111,14 @@ exports.Keypad = class extends EventEmitter
 	###
 	constructor: (options = {}) ->
 		@[key] = val for key, val of options
-		@SetMapping @map_name unless @mapping?
+
+		# Loading default (built-in) set of key maps
+		unless @maps?
+			@maps =
+				nokia: require './MapNokia.js'
+				sonyericsson: require './MapSonyericsson.js'
+
+		@SetMapping @map_name, @map_language unless @mapping?
 
 		@case = exports.Keypad.caselist[0]
 		@on 'press', @ProcessKeyPress
@@ -114,14 +129,13 @@ exports.Keypad = class extends EventEmitter
 		@method SetMapping
 		@param {String} name Target mapping name
 	###
-	SetMapping: (name) ->
-		unless @maps?
-			@maps =
-				nokia: (require "./MapNokia.js").KeyMap
-				sonyericsson: (require "./MapSonyericsson.js").KeyMap
+	SetMapping: (name, language=@map_language) ->
+		throw new Error 'Please specify target map name' unless name?
 		throw new Error 'Specified map name does not exist' unless @maps[name]?
+		throw new Error 'Specified language does not exist in a mapping' unless @maps[name][language]?
 		@map_name = name
-		@mapping = @maps[@map_name]
+		@map_language = language
+		@mapping = @maps[@map_name][@map_language]
 
 	###*
 		Process a keyhold
@@ -166,9 +180,7 @@ exports.Keypad = class extends EventEmitter
 		if immediate
 			# Inserting right now, if that was requested
 			@InsertCharacter @character
-			clearTimeout @timeout if @timeout?
-			@timeout = null
-			return
+			return @ClearTimeout()
 
 		# Setting new key timeout
 		@ResetTimeout()
@@ -197,10 +209,9 @@ exports.Keypad = class extends EventEmitter
 		@method GetInsertCharacter
 		@param {String} text Selected (typed) string
 	###
-	GetInsertCharacter: (text) ->
-		text = @character unless text?
+	GetInsertCharacter: (text=@character) ->
 		return null unless text?
-		text = text.toUpperCase() if @case[0] is 'A'
+		return text.toUpperCase() if @case[0] is 'A'
 		text
 
 	###*
@@ -208,8 +219,7 @@ exports.Keypad = class extends EventEmitter
 		@method InsertCharacter
 		@param {String} text Selected (typed) string
 	###
-	InsertCharacter: (text) ->
-		text = @character unless text?
+	InsertCharacter: (text=@character) ->
 		return unless text?
 		inserted = @GetInsertCharacter text
 		@text += inserted
@@ -223,15 +233,24 @@ exports.Keypad = class extends EventEmitter
 	###
 	ClearKeys: ->
 		@character = null
-		clearTimeout @timeout if @timeout?
+		@ClearTimeout()
 
 	###*
 		Resetting typing tymeout
 		@method ResetTimeout
 	###
 	ResetTimeout: ->
-		clearTimeout @timeout if @timeout?
+		@ClearTimeout()
 		@timeout = setTimeout =>
 			@InsertCharacter()
 			@timeout = null
 		, @delay
+
+	###*
+		Clear current keys timeout
+		@method ClearTimeout
+	###
+	ClearTimeout: ->
+		if @timeout?
+			clearTimeout @timeout
+			@timeout = null
