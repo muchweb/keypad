@@ -174,7 +174,7 @@ exports.de =
 	]
 
 # Spanish
-exports.sp =
+exports.es =
 	'1': [
 		'.'
 		','
@@ -364,7 +364,7 @@ exports.fr =
 	]
 
 # Dutch
-exports.du =
+exports.nl =
 	'1': [
 		'.'
 		','
