@@ -17,5 +17,11 @@
     "prepublish": "make",
     "pretest": "make",
     "test": "make test"
-  }
+  },
+  "keywords": [
+    "keypad",
+    "keyboard",
+    "alphanumeric",
+    "monoblock"
+  ]
 }
