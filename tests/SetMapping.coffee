@@ -2,7 +2,7 @@
 
 exports.SetMapping =
 
-	'Just correct mapping': (test) ->
+	'Dynamically: just correct mapping': (test) ->
 		item = new Keypad
 
 		item.emit 'press', '0'
@@ -17,7 +17,7 @@ exports.SetMapping =
 			test.done()
 		, 1000
 
-	'Correct mapping and correct language': (test) ->
+	'Dynamically: correct mapping and correct language': (test) ->
 		item = new Keypad
 
 		item.emit 'press', '0'
@@ -32,7 +32,7 @@ exports.SetMapping =
 			test.done()
 		, 1000
 
-	'Correct mapping and wrong language': (test) ->
+	'Dynamically: correct mapping and wrong language': (test) ->
 		item = new Keypad
 
 		test.throws ->
@@ -40,7 +40,7 @@ exports.SetMapping =
 
 		test.done()
 
-	'Wrong mapping and correct language': (test) ->
+	'Dynamically: wrong mapping and correct language': (test) ->
 		item = new Keypad
 
 		test.throws ->
@@ -48,10 +48,56 @@ exports.SetMapping =
 
 		test.done()
 
-	'Wrong mapping and wrong language': (test) ->
+	'Dynamically: wrong mapping and wrong language': (test) ->
 		item = new Keypad
 
 		test.throws ->
 			item.SetMapping 'sonyßricsson', 'là'
 
+		test.done()
+
+	# 'Constructor: Just correct language': (test) ->
+	# 	item = new Keypad
+	# 		map_language: 'en'
+	#
+	# 	item.emit 'press', '0'
+	# 	test.strictEqual item.character, '+'
+	# 	test.done()
+
+	'Constructor: Just correct mapping': (test) ->
+		item = new Keypad
+			map_name: 'sonyericsson'
+
+		item.emit 'press', '0'
+		test.strictEqual item.character, '+'
+		test.done()
+
+	'Constructor: correct mapping and correct language': (test) ->
+		item = new Keypad
+			map_name: 'sonyericsson'
+			map_language: 'en'
+
+		item.emit 'press', '0'
+		test.strictEqual item.character, '+'
+		test.done()
+
+	'Constructor: correct mapping and wrong language': (test) ->
+		test.throws ->
+			item = new Keypad
+				map_name: 'sonyericsson'
+				map_language: 'là'
+		test.done()
+
+	'Constructor: wrong mapping and correct language': (test) ->
+		test.throws ->
+			item = new Keypad
+				map_name: 'sonyßricsson'
+				map_language: 'en'
+		test.done()
+
+	'Constructor: wrong mapping and wrong language': (test) ->
+		test.throws ->
+			item = new Keypad
+				map_name: 'sonyßricsson'
+				map_language: 'là'
 		test.done()
