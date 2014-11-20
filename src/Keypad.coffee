@@ -123,6 +123,7 @@ exports.Keypad = class extends EventEmitter
 		@case = exports.Keypad.caselist[0]
 		@on 'press', @ProcessKeyPress
 		@on 'hold', @ProcessKeyHold
+		@on 'timeout', @Timeout
 
 	###*
 		Set keypad mapping
@@ -163,7 +164,7 @@ exports.Keypad = class extends EventEmitter
 
 		# In the process of typing, same key pressed. Cycling choices
 		if current_index >= 0
-			@ResetTimeout()
+			@RestartTimeout()
 			return @character = @mapping[key][current_index + 1] if @mapping[key][current_index + 1]?
 			return @character = @mapping[key][0]
 
@@ -183,7 +184,7 @@ exports.Keypad = class extends EventEmitter
 			return @ClearTimeout()
 
 		# Setting new key timeout
-		@ResetTimeout()
+		@RestartTimeout()
 
 	###*
 		Remove last character
@@ -237,20 +238,24 @@ exports.Keypad = class extends EventEmitter
 
 	###*
 		Resetting typing tymeout
-		@method ResetTimeout
+		@method RestartTimeout
 	###
-	ResetTimeout: ->
+	RestartTimeout: ->
 		@ClearTimeout()
-		@timeout = setTimeout =>
-			@InsertCharacter()
-			@timeout = null
-		, @delay
+		@timeout = setTimeout (=> @Timeout()), @delay
+
+	###*
+		When timeout happens, inserting new character and clearing the timeout
+		@method Timeout
+	###
+	Timeout: ->
+		@InsertCharacter()
+		@ClearTimeout()
 
 	###*
 		Clear current keys timeout
 		@method ClearTimeout
 	###
 	ClearTimeout: ->
-		if @timeout?
-			clearTimeout @timeout
-			@timeout = null
+		clearTimeout @timeout if @timeout?
+		@timeout = null

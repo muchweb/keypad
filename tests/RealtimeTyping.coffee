@@ -1,6 +1,6 @@
 {Keypad} = require '..'
 
-exports.TypingBackspacing =
+exports.RealtimeTyping =
 
 	'typing and pressing backspace': (test) ->
 		item = new Keypad
@@ -93,3 +93,24 @@ exports.TypingBackspacing =
 				, 10
 			, 10
 		, 10
+		
+	'timeout': (test) ->
+		item = new Keypad
+		test.strictEqual item.text, ''
+
+		item.emit 'press', '1'
+		test.strictEqual item.character, '.'
+		test.strictEqual item.text, ''
+
+		setTimeout ->
+			item.emit 'press', '1'
+			test.strictEqual item.character, '.'
+			test.strictEqual item.text, '.'
+
+			setTimeout ->
+				test.strictEqual item.character, null
+				test.strictEqual item.text, '..'
+
+				test.done()
+			, 1000
+		, 1000

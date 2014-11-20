@@ -1,6 +1,6 @@
 {Keypad} = require '..'
 
-exports.CyclingSlow =
+exports.RealtimeCyclingSlow =
 
 	'cycling slowly': (test) ->
 		item = new Keypad

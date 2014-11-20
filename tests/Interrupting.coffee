@@ -10,15 +10,13 @@ exports.Interrupt =
 		test.strictEqual item.character, 'a'
 		test.strictEqual item.text, ''
 
-		setTimeout ->
-			item.emit 'press', '5'
-			test.strictEqual item.character, 'j'
-			test.strictEqual item.text, 'A'
+		item.emit 'press', '5'
+		test.strictEqual item.character, 'j'
+		test.strictEqual item.text, 'A'
 
-			setTimeout ->
-				test.strictEqual item.character, null
-				test.strictEqual item.text, 'Aj'
+		item.emit 'timeout'
 
-				test.done()
-			, 1000
-		, 200
+		test.strictEqual item.character, null
+		test.strictEqual item.text, 'Aj'
+
+		test.done()

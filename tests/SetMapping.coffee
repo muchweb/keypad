@@ -16,14 +16,14 @@ exports.SetMapping =
 		item.emit 'press', '0'
 		test.strictEqual item.character, ' '
 
-		setTimeout ->
-			item.SetMapping 'sonyericsson'
+		item.emit 'timeout'
+		
+		item.SetMapping 'sonyericsson'
 
-			item.emit 'press', '0'
-			test.strictEqual item.character, '+'
+		item.emit 'press', '0'
+		test.strictEqual item.character, '+'
 
-			test.done()
-		, 1000
+		test.done()
 
 	'Dynamically: correct mapping and correct language': (test) ->
 		item = new Keypad
@@ -31,14 +31,14 @@ exports.SetMapping =
 		item.emit 'press', '0'
 		test.strictEqual item.character, ' '
 
-		setTimeout ->
-			item.SetMapping 'sonyericsson', 'en'
+		item.emit 'timeout'
 
-			item.emit 'press', '0'
-			test.strictEqual item.character, '+'
+		item.SetMapping 'sonyericsson', 'en'
 
-			test.done()
-		, 1000
+		item.emit 'press', '0'
+		test.strictEqual item.character, '+'
+
+		test.done()
 
 	'Dynamically: correct mapping and wrong language': (test) ->
 		item = new Keypad
