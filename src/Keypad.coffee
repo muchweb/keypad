@@ -117,6 +117,7 @@ exports.Keypad = class extends EventEmitter
 			@maps =
 				nokia: require './MapNokia.js'
 				sonyericsson: require './MapSonyericsson.js'
+				siemens: require './MapSiemens.js'
 
 		@SetMapping @map_name, @map_language unless @mapping?
 

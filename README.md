@@ -7,9 +7,13 @@ Nokia mappings compatible with these models:
  - Nokia 5220
  - Nokia X3-02
 
-Sony Ericsson mappings are compatible with these models:
+Sony Ericsson mapping is compatible with this model:
 
  - Sony Ericsson C902
+
+Sony Siemens mapping is compatible with this model:
+
+ - Siemens A35
 
 ## Usage
 
