@@ -4,6 +4,6 @@
   "dependencies": {
     "browserify": "^6.3.2",
     "coffee-script": "^1.8.0",
-    "keypad": "^0.6.1"
+    "keypad": "^0.6.3"
   }
 }
