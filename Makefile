@@ -1,4 +1,8 @@
-all: dist/browser.js
+all: dist/browser.js css/styles.css
+
+css/styles.css: less/styles.less ./node_modules/.bin/lessc
+	mkdir -p css
+	./node_modules/.bin/lessc less/styles.less > css/styles.css
 
 dist/browser.js: lib/browser.js
 	mkdir -p dist
@@ -11,7 +15,7 @@ lib/main.js: src/main.coffee ./node_modules/.bin/coffee
 	mkdir -p lib
 	./node_modules/.bin/coffee --map --compile --output lib src
 
-./node_modules/.bin/coffee ./node_modules/.bin/browserify:
+./node_modules/.bin/coffee ./node_modules/.bin/browserify ./node_modules/.bin/coffee:
 	npm install
 
 clean:

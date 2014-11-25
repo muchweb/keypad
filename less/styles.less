@@ -1,0 +1,84 @@
+.phone {
+	width: 300px;
+	font-size: 13px;
+	font-family: sans-serif;
+	margin: 0 auto;
+	border: 1px solid black;
+	border-radius: 3px;
+	background: rgba(0, 0, 0, 0.1);
+	box-shadow: 2px 0px 8px 0 rgba(0, 0, 0, 0.3);
+
+	& > .screen {
+		padding: 32px;
+		box-sizing: border-box;
+
+		& > .screen-inner {
+			position: relative;
+			height: 240px;
+			box-sizing: border-box;
+			padding: 32px;
+			background: rgba(255, 255, 255, 0.5);
+			font-size: 200%;
+			font-family: monospace;
+
+			& > #screen-inner-text {
+				background: rgba(0, 0, 0, 0.1);
+			}
+
+			& > #screen-inner-character {
+				background: rgba(0, 0, 0, 1);
+				color: rgba(255, 255, 255, 1);
+			}
+
+			& > #screen-inner-case {
+				position: absolute;
+				right: 2px;
+				top: 2px;
+				background: rgba(0, 0, 0, 0.1);
+				font-size: 70%;
+			}
+		}
+	}
+
+	& > .keypad {
+
+		& > .keypad-row {
+			background: rgba(0, 0, 0, 0.1);
+			border-top: 1px solid black;
+			display: flex;
+
+			& > .keypad-row-key {
+				cursor: pointer;
+				background: rgba(0, 0, 0, 0.1);
+				padding: 4px;
+				margin: 10px;
+				flex: 1;
+				display: flex;
+				white-space: nowrap;
+
+				& > .keypad-row-key-main {
+					font-size: 300%;
+					display: inline;
+					text-align: center;
+					flex: 1;
+				}
+
+				& > .keypad-row-key-secondary {
+					font-size: 150%;
+					display: inline;
+					padding-top: 12px;
+					text-align: center;
+					flex: 2;
+				}
+
+				&:hover {
+					background: rgba(0, 0, 0, 0.2);
+				}
+
+				&:active {
+					background: rgba(0, 0, 0, 0.3);
+				}
+			}
+		}
+	}
+}
