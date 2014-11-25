@@ -14,6 +14,7 @@ Sony Ericsson mapping is compatible with this model:
 Sony Siemens mapping is compatible with this model:
 
  - Siemens A35
+ - Siemens M55
 
 ## Usage
 
