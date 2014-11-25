@@ -22,11 +22,11 @@ Sony Siemens mapping is compatible with this model:
  - `layout`: Mainly affects punctuation, *default*: `'nokia'`
 
 ```javascript
-var Keypad = require('keypad').Keypad;
-pad = new Keypad({
-    delay: 500,
-    layout: 'nokia',
-});
+var Keypad = require('keypad').Keypad,
+    pad = new Keypad({
+        delay: 500,
+        layout: 'nokia',
+    });
 ```
 
 Emulating a button press:
